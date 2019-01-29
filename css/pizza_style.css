@@ -1,0 +1,33 @@
+/*
+ *  Style for Pizza Project by Chester Terry
+ *
+ *  
+ *
+ */
+body {
+  background-image: url("../img/pizza1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cmtTitle {
+	color:lightyellow;
+}
+
+.cmtCard {
+	float:left;
+	width:200px;
+	border-style: solid;
+	border-color: Green;
+	border-width: 1px;
+	border-radius: 5%;
+	margin: 5px;
+	padding: 5px;
+	background-color:lightyellow;
+}
+.cmtCard-Header {
+	font-weight: 900;
+	border-bottom: 1px solid green;
+}
+.cmtCard-Body {
+}
