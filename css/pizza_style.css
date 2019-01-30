@@ -8,10 +8,20 @@ body {
   background-image: url("../img/pizza1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: Verdana, sans-serif;
 }
 
 .cmtTitle {
-	color:lightyellow;
+	color:white;
+    text-align:left;
+    margin-left:100px;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding-top:5px;
+    padding-bottom:5px;
+    text-shadow: 2px 2px green;
+    font-size:150%;
+
 }
 
 .cmtCard {
@@ -20,14 +30,127 @@ body {
 	border-style: solid;
 	border-color: Green;
 	border-width: 1px;
-	border-radius: 5%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 	margin: 5px;
-	padding: 5px;
+	padding: 0px;
 	background-color:lightyellow;
+    display:inline-block;
+    text-align:left;
+    overflow:hidden;
 }
+
 .cmtCard-Header {
 	font-weight: 900;
 	border-bottom: 1px solid green;
+    color:white;
+    background-color:green;
+    text-align:center;
 }
+
 .cmtCard-Body {
+    padding:5px;
 }
+
+.cmtCard-Container {
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.cmtOrderButtons {
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cmtButton {
+    background-color:green;
+    color:lightyellow;
+    padding: 15px;
+    margin: 10px;
+	border-style: solid;
+	border-color: lightyellow;
+	border-width: 1px;
+    border-radius:10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    overflow: hidden;   
+}
+.cmtReceiptWrapper{
+    text-align: center;
+}
+
+.cmtReceiptContainer {
+    margin:20px;
+    display:inline-block;
+    border-style: solid;
+    border-color:  Green;
+    border-width: 1px;
+    border-radius: 10px;
+    overflow: hidden;
+    visibility:hidden;
+    width:50%;
+}
+
+.cmtReceipt{
+    background-color:white;
+}
+
+.cmtReceiptHeader {
+	font-weight: 900;
+    background-color: green;
+    color:white;
+    text-align:center;
+}
+
+.cmtTable{
+	display: table;
+	width: 100%;
+}
+.cmtTableRow {
+	display: table-row;
+}
+.cmtTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.cmtTableCell, .cmtTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+
+.cmtTableCellLeft, .cmtTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+    text-align: left;
+}
+
+.cmtTableCellRight, .cmtTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+    text-align: right;
+}
+.cmtTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.cmtTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.cmtTableBody {
+	display: table-row-group;
+}
+

@@ -1,101 +1,321 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="./img/favicon.png"/>
+        <link rel="stylesheet" href="./css/pizza_style.css"/>
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<link rel="stylesheet" href="./css/pizza_style.css"/>
+        <title>Chester's Pizzaria</title>
 
-		<title>Chester's Pizza</title>
-	</head>
-	<body>
-		<div class="container text-left my-5">
-			<h1 class="text-center cmtTitle">Welcome to Chester's Pizzaria!</h1>
-		</div>
+        <!-- JavaScript Section - Note that I'm using a 3rd party JS library for number formating only -->
+        <!-- Also, to recover lost knowledge, did most things by hand -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+        <script type="text/JavaScript">
 
-		<div class="container align-center">
-			<form class="container-fluid"> 
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Size</div>
-					<div class="cmtCard-Body">
-						<div><input type="radio" name="size" id="size" value="Personal">Personal</input></div>
-						<div><input type="radio" name="size" id="size" value="Medium">Medium</input></div>
-						<div><input type="radio" name="size" id="size" value="Large">Large</input></div>
-						<div><input type="radio" name="size" id="size" value="Extra Large">Extra Large</input></div>
-					</div>
-				</div>
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Meat</div>
-					<div class="cmtCard-Body">
-						<div><input type="checkbox" name="meat" id="meat" value="Pepperoni">Pepperoni</input></div>
-						<div><input type="checkbox" name="meat" id="meat" value="Sausage">Sausage</input></div>
-						<div><input type="checkbox" name="meat" id="meat" value="Canadian Bacon">Canadian Bacon</input></div>
-						<div><input type="checkbox" name="meat" id="meat" value="Ground Beef">Ground Beef</input></div>
-						<div><input type="checkbox" name="meat" id="meat" value="Anchovy">Anchovy</input></div>
-						<div><input type="checkbox" name="meat" id="meat" value="Chicken">Chicken</input></div>
-					</div>
-				</div>
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Cheese</div>
-					<div class="cmtCard-Body">
-						<div><input type="radio" name="cheese" id="cheese" value="Regular">Regular</input></div>
-						<div><input type="radio" name="cheese" id="cheese" value="No Cheese">No Cheese</input></div>
-						<div><input type="radio" name="cheese" id="cheese" value="Extra Cheese">Extra Cheese</input></div>
-					</div>
-				</div>
+            //Couple HTML variables
+            var rowBegin = "<div class=\"cmtTableRow\"><div class=\"cmtTableCellLeft\">";
+            var rowMiddle = "</div><div class=\"cmtTableCellRight\">";
+            var rowEnd = "</div></div>";
 
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Crust</div>
-					<div class="cmtCard-Body">
-						<div><input type="radio" name="crust" id="crust" value="Plain Crust">Plain Crust</input></div>
-						<div><input type="radio" name="crust" id="crust" value="Garlic Butter Crust">Garlic Butter Crust</input></div>
-						<div><input type="radio" name="crust" id="crust" value="Cheese Stuffed Crust">Cheese Stuffed Crust</input></div>
-						<div><input type="radio" name="crust" id="crust" value="Spicy Crust">Spicy Crust</input></div>
-						<div><input type="radio" name="crust" id="crust" value="House Special Crust">House Special Crust</input></div>
-					</div>
-				</div>
+            //Pricing Data Arrays
+            var meatList = []
+            var veggieList = [];
+            
+            var sizePriceObj = [];
+            sizePriceObj["Personal"] = 6;
+            sizePriceObj["Medium"] = 10;
+            sizePriceObj["Large"] = 14;
+            sizePriceObj["Extra Large"] =  16;
 
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Sauce</div>
-					<div class="cmtCard-Body">
-						<div><input type="radio" name="sauce" id="sauce" value="Marinara">Marinara</input></div>
-						<div><input type="radio" name="sauce" id="sauce" value="White Sauce">White Sauce</input></div>
-						<div><input type="radio" name="sauce" id="sauce" value="Barbeque Sauce">Barabeque Sauce</input></div>
-						<div><input type="radio" name="sauce" id="sauce" value="No Sauce">No Sauce</input></div>
-					</div>
-				</div>
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Veggies</div>
-					<div class="cmtCard-Body">
-						<div><input type="checkbox" name="veggies" id="veggies" value="Tomatoes">Tomatoes</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Onions">Onions</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Olives">Olives</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Green Peppers">Green Peppers</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Mushrooms">Mushrooms</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Pineapple">Pineapple</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Spinach">Spinach</input></div>
-						<div><input type="checkbox" name="veggies" id="veggies" value="Jalapeno">Jalapeno</input></div>
-					</div>
-				</div>	
-				<div class="cmtCard">
-					<div class="cmtCard-Header">Prices</div>
-					<div>Personal pizza<br/>$6.00 </div>
-					<div>Medium pizza<br/>$10.00 </div>
-					<div>Large pizza<br/>$14.00 </div>
-					<div>XLarge pizza<br/>$16.00  </div>
-				</div>
-		</div>
+            var crustPriceObj = [];
+            crustPriceObj["Plain Crust"] = 0;
+            crustPriceObj["Garlic Butter Crust"] = 0;
+            crustPriceObj["Cheese Stuffed Crust"] = 3;
+            crustPriceObj["Spicy Crust"] = 0;
+            crustPriceObj["House Special Crust"] = 0;
 
-			</form>
+            var cheesePriceObj = [];
+            cheesePriceObj["Regular Cheese"] = 0;
+            cheesePriceObj["No Cheese"] = 0;
+            cheesePriceObj["Extra Cheese"] = 3;
 
 
-			<!-- Optional JavaScript -->
-			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	</body>
+            function getRadioValue(element)
+            {
+                var returnVal;
+
+                for(i = 0; i < element.length; i++)
+                {
+                    if(element[i].checked)
+                    {
+                        returnVal = element[i].value;
+                    }
+                }
+                return returnVal;
+            }
+
+            function getCheckboxValues(element)
+            {
+                var returnArray = [];
+
+                 for(i = 0; i < element.length; i++)
+                {
+                    if(element[i].checked)
+                    {
+                        returnArray[returnArray.length] = element[i].value;
+                    }
+                }
+                return returnArray;
+            }
+
+            function showItemizedReceipt(form)
+            { 
+                console.log("Entering showItemizedReceipt");
+
+                var pizzaSize = getRadioValue(form.elements['pizzaSize']);
+                console.log("PizzaSize: " + pizzaSize);
+
+                var meats = getCheckboxValues(form.elements['meat']);
+                console.log("Meat Len: " + meats.length);
+                for(i = 0; i < meats.length; i++)
+                {
+                    console.log(meats[i]);
+                }
+
+                var veggies = getCheckboxValues(form.elements['veggies']);
+                console.log("Veggie Len: " + veggies.length);
+                for(i = 0; i < veggies.length; i++)
+                {
+                    console.log(veggies[i]);
+                }
+
+                var cheese = getRadioValue(form.elements['cheese']);
+                console.log("Cheese: " + cheese);
+            
+                var sauce = getRadioValue(form.elements['sauce']);
+                console.log("Sauce: " + sauce);
+
+                var crust = getRadioValue(form.elements['crust']);
+                console.log("Crust: " + crust);
+
+
+                var receiptData = document.getElementById("cmtReceiptData");
+
+                var runningTotal = 0;
+
+                //For each row on the receipt, add a: rowBegin, rowMiddle, rowEnd with the appropriate text in between
+                var htmlOutput = rowBegin;
+                htmlOutput += pizzaSize;
+                htmlOutput += rowMiddle;
+                htmlOutput += numeral(sizePriceObj[pizzaSize]).format('$0.00');
+                runningTotal += sizePriceObj[pizzaSize];
+                htmlOutput += rowEnd;
+
+                htmlOutput += rowBegin;
+                htmlOutput += crust;
+                htmlOutput += rowMiddle;
+                htmlOutput += numeral(crustPriceObj[crust]).format('$0.00');
+                runningTotal += crustPriceObj[crust];
+                htmlOutput += rowEnd;
+
+                htmlOutput += rowBegin;
+                htmlOutput += cheese;
+                htmlOutput += rowMiddle;
+                htmlOutput += numeral(cheesePriceObj[cheese]).format('$0.00');
+                runningTotal += cheesePriceObj[cheese];
+                htmlOutput += rowEnd;
+
+                if(meats.length > 0)
+                {
+                    htmlOutput += rowBegin;
+                    for( i = 0; i < meats.length; i++)
+                    {
+                        htmlOutput += (meats[i]);
+                        if ( i < meats.length - 1 )
+                        {
+                            htmlOutput += ", ";
+                        }
+                    }
+                    htmlOutput += rowMiddle;
+                    if (meats.length > 1) 
+                    {
+                        htmlOutput += numeral(meats.length - 1).format('$0.00');
+                        runningTotal +=  meats.length - 1;
+                    }
+                    else
+                    {
+                        htmlOutput += "$0.00";
+                    }
+                    htmlOutput += rowEnd;
+                }
+
+
+                htmlOutput += rowBegin;
+                htmlOutput += sauce;
+                htmlOutput += rowMiddle;
+                htmlOutput += "$0.00";
+                htmlOutput += rowEnd;
+
+                if(veggies.length > 0)
+                {
+                    htmlOutput += rowBegin;
+                    for( i = 0; i < veggies.length; i++)
+                    {
+                        htmlOutput += (veggies[i]);
+                        if ( i < veggies.length - 1 )
+                        {
+                            htmlOutput += ", ";
+                        }
+                    }
+                    htmlOutput += rowMiddle;
+                    if (veggies.length > 1) 
+                    {
+                        htmlOutput += numeral(veggies.length - 1).format('$0.00');
+                        runningTotal += veggies.length - 1; 
+                    }
+                    else
+                    {
+                        htmlOutput += "$0.00";
+                    }
+                    htmlOutput += rowEnd;
+                }
+
+                htmlOutput += rowBegin;
+                htmlOutput += "<p style=\"font-weight:900;\">Total</p>";
+                htmlOutput += rowMiddle;
+                htmlOutput += numeral(runningTotal).format('$0.00');
+                htmlOutput += rowEnd;
+
+
+
+                //Write the inner HTML into the cmtReceiptData
+                console.log(htmlOutput);
+                receiptData.innerHTML = htmlOutput;
+
+                var receiptContainer = document.getElementById("cmtReceiptContainer");
+                receiptContainer.style.visibility = "visible";
+            } 
+
+            function clearAndHideReceipt(form)
+            {
+                console.log("Entering clearAndHideReceipt");
+
+                var receiptContainer = document.getElementById("cmtReceiptContainer");
+                receiptContainer.style.visibility = "hidden";
+                form.reset();
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <div class="cmtTitle">
+            <h1 class="cmtTitle">Welcome to Chester's Pizzaria!</h1>
+        </div>
+
+        <form> 
+            <div class="cmtCard-Container">
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Size</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="radio" name="pizzaSize" id="pizzaSize" value="Personal" checked="true">Personal</input></div>
+                        <div><input type="radio" name="pizzaSize" id="pizzaSize" value="Medium">Medium</input></div>
+                        <div><input type="radio" name="pizzaSize" id="pizzaSize" value="Large">Large</input></div>
+                        <div><input type="radio" name="pizzaSize" id="pizzaSize" value="Extra Large">Extra Large</input></div>
+                    </div>
+                </div>
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Crust</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="radio" name="crust" id="crust" value="Plain Crust" checked="true">Plain Crust</input></div>
+                        <div><input type="radio" name="crust" id="crust" value="Garlic Butter Crust">Garlic Butter Crust</input></div>
+                        <div><input type="radio" name="crust" id="crust" value="Cheese Stuffed Crust">Cheese Stuffed Crust</input></div>
+                        <div><input type="radio" name="crust" id="crust" value="Spicy Crust">Spicy Crust</input></div>
+                        <div><input type="radio" name="crust" id="crust" value="House Special Crust">House Special Crust</input></div>
+                    </div>
+                </div>
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Cheese</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="radio" name="cheese" id="cheese" value="Regular Cheese" checked="true">Regular</input></div>
+                        <div><input type="radio" name="cheese" id="cheese" value="No Cheese">No Cheese</input></div>
+                        <div><input type="radio" name="cheese" id="cheese" value="Extra Cheese">Extra Cheese</input></div>
+                    </div>
+                </div>
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Meat</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="checkbox" name="meat" id="meat" value="Pepperoni">Pepperoni</input></div>
+                        <div><input type="checkbox" name="meat" id="meat" value="Sausage">Sausage</input></div>
+                        <div><input type="checkbox" name="meat" id="meat" value="Canadian Bacon">Canadian Bacon</input></div>
+                        <div><input type="checkbox" name="meat" id="meat" value="Ground Beef">Ground Beef</input></div>
+                        <div><input type="checkbox" name="meat" id="meat" value="Anchovy">Anchovy</input></div>
+                        <div><input type="checkbox" name="meat" id="meat" value="Chicken">Chicken</input></div>
+                    </div>
+                </div>
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Sauce</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="radio" name="sauce" id="sauce" value="Marinara Sauce" checked="true">Marinara</input></div>
+                        <div><input type="radio" name="sauce" id="sauce" value="White Sauce">White Sauce</input></div>
+                        <div><input type="radio" name="sauce" id="sauce" value="Barbeque Sauce">Barabeque Sauce</input></div>
+                        <div><input type="radio" name="sauce" id="sauce" value="No Sauce">No Sauce</input></div>
+                    </div>
+                </div>
+                <div class="cmtCard">
+                    <div class="cmtCard-Header">Veggies</div>
+                    <div class="cmtCard-Body">
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Tomatoes">Tomatoes</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Onions">Onions</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Olives">Olives</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Green Peppers">Green Peppers</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Mushrooms">Mushrooms</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Pineapple">Pineapple</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Spinach">Spinach</input></div>
+                        <div><input type="checkbox" name="veggies" id="veggies" value="Jalapeno">Jalapeno</input></div>
+                    </div>
+                </div>	
+            </div>
+            <div class="cmtOrderButtons">
+                <button class="cmtButton" type="button" onclick="showItemizedReceipt(this.form);">Order</button>
+                <button class="cmtButton" type="button" onclick="clearAndHideReceipt(this.form);">Cancel</button>
+            </div>
+        </form>
+        <div class="cmtReceiptWrapper">
+            <div class="cmtReceiptContainer" id="cmtReceiptContainer">
+                <div class="cmtReceiptHeader">Your Order</div>
+                <div  class="cmtReceipt"> 
+                    <div class="cmtTable">
+                        <div class="cmtTableBody"id="cmtReceiptData">
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                            <div class="cmtTableRow">
+                                <div class="cmtTableCell">&nbsp;</div>
+                                <div class="cmtTableCell">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
